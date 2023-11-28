@@ -7,17 +7,27 @@ public class Tarea {
     public int id;
     public String nome_Tarea;
     public String descripcion;
+    public String comentarios;
 
     public Tarea(){
 
     }
 
-    public Tarea (int identificador, String nombre, String nova_descripcion){
+    public Tarea (int identificador, String nombre, String nova_descripcion, String coment){
         id = identificador;
         nome_Tarea = nombre;
         descripcion = nova_descripcion;
+        comentarios = coment;
     }
-
+    public String getComentario(){
+        return comentarios;
+    }
+    public void setComentarios(String coment){
+        comentarios = coment;
+    }
+    public void borraComentarios(String coment){
+        comentarios = "";
+    }
     public int getId(){
 
         return id;
