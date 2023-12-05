@@ -18,59 +18,108 @@ public static void main(String[] args) {
    
     do {
         
-    System.out.println("elixe unha opcion");
-    System.out.println("a) " + "crear unha tarea");
-    System.out.println("b) " + "listar tareas ");
-    System.out.println("c) " + "borrar tarea");
-    System.out.println("d) " + "agregar comentario");
-    System.out.println("f) " + "sair");
 
-    opcion = entrada.nextLine();
-    
-    switch (opcion) {
+        System.out.println("Elixe unha opcion");
+        System.out.println("a) " + "Crear unha tarea");
+        System.out.println("b) " + "Listar tareas ");
+        System.out.println("c) " + "Borrar tarea");
+        System.out.println("d) " + "Filtrar por prioridad");
+        System.out.println("e) " + "Cambiar la prioridad");
+        System.out.println("f  " + "agregar comentarios");
+        System.out.println("g) " + "Sair");
 
-        case "a":
 
-            System.out.println("como queres que se chame a tarea?");
-            nome = entrada.nextLine();
+        opcion = entrada.nextLine();
+        
+        switch (opcion) {
 
-            System.out.println("en que consiste a tarea");
-            descripcion = entrada.nextLine();
-            Tarea tarea = new Tarea();
+            case "a":
 
-            tarea.setId(indice);
-            tarea.setNome(nome);
-            tarea.setDescripcion(descripcion);
+                System.out.println("Como queres que se chame a tarea?");
+                nome = entrada.nextLine();
 
-            listaTareas.add(indice, tarea);
-            indice = indice+1;
-          
-            break;
-    
-        case "b":
+                System.out.println("En que consiste a tarea");
+                descripcion = entrada.nextLine();
+                Tarea tarea = new Tarea();
 
-            for (int i = 0; i < listaTareas.size(); i++) {
-               System.out.println(listaTareas.get(i).getId() + " " + listaTareas.get(i).getNome() + " " + listaTareas.get(i).getDescripcion() + " " + listaTareas.get(i).getComentario());
-            }
-                
-            break;
+                tarea.setId(indice);
+                tarea.setNome(nome);
+                tarea.setDescripcion(descripcion);
 
-        case "c":
+                System.out.println("Establece a prioridade");
+                System.out.println("Elixe entre (A) alta, (M) media, (B) baixa");
+                tarea.setPrioridad(entrada.nextLine());
+
+
+                listaTareas.add(indice, tarea);
+                indice = indice+1;
+
             
-            System.out.println("elixe polo indice cal queres eliminar");
+                break;
+        
 
-                int indice1 = entrada.nextInt();
 
-            for (int i = 0; i < listaTareas.size(); i++){
+            case "b":
 
-                if(indice1 == i){
+                for (int i = 0; i < listaTareas.size(); i++) {
 
-                    listaTareas.remove(i);
+                System.out.println("ID: " + listaTareas.get(i).getId() + ", prioridade: "+ listaTareas.get(i).getPrioridad() + ", nome: " + listaTareas.get(i).getNome() + ", descripción: " + listaTareas.get(i).getDescripcion() + " " + listaTareas.get(i).getComentario());
 
                 }
-            }
 
-        case "d":
+
+            case "c":
+                
+                System.out.println("Elixe polo índice cal queres eliminar");
+
+                    int indice1 = entrada.nextInt();
+
+                for (int i = 0; i < listaTareas.size(); i++){
+
+                    if(indice1 == i){
+
+                        listaTareas.remove(i);
+
+                    }
+                }
+
+                break;
+
+
+
+            case "d":
+
+                System.out.println("Que prioridade queres visualizar? [(A)lta, (M)edia, (B)aixa]");
+                String res = entrada.nextLine();
+                System.out.println("Tareas de prioridade " + res);
+
+                for (int i = 0; i < listaTareas.size(); i++){
+
+                    if(listaTareas.get(i).getPrioridad().equals(res)){
+
+                        System.out.println("ID: " + listaTareas.get(i).getId() + ", nome: " + listaTareas.get(i).getNome() + ", descripción: " + listaTareas.get(i).getDescripcion());
+
+                    }
+
+                }
+
+                break;
+
+
+
+            case "e":
+
+                System.out.println("Introduce o ID da tarea da que queres cambiar a prioridade");
+                int ord = entrada.nextInt();
+
+
+                System.out.println("Elixe a nova prioridade [(A)lta, (M)edia, (B)aixa]");
+                Scanner scan = new Scanner(System.in);
+                listaTareas.get(ord).setPrioridad(scan.nextLine());
+
+                break;
+
+             case "f":
 
             String opcion2 = "";
             System.out.println("elige entre 1 - agregar comentario. 2 -modificalo ou 3 -borralo");
@@ -106,16 +155,18 @@ public static void main(String[] args) {
             }
             break;
 
-        case "e":
+            case "g":
 
-            System.out.println("adios");
+                System.out.println("Adios");
 
-            break;
-
+                break;
+        
         }
+            
+
+    }while(!opcion.equals("g")); 
 
 
-    }while(!opcion.equals("e")); 
 }
 }
 
