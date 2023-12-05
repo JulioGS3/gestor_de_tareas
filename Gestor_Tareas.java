@@ -1,4 +1,4 @@
-package Tareas;
+package gestor_tareas;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -13,6 +13,8 @@ public static void main(String[] args) {
     String nome = "";
     String descripcion = "";
     int indice = 0;
+    String comentario="";
+
    
     do {
         
@@ -20,7 +22,8 @@ public static void main(String[] args) {
     System.out.println("a) " + "crear unha tarea");
     System.out.println("b) " + "listar tareas ");
     System.out.println("c) " + "borrar tarea");
-    System.out.println("d) " + "sair");
+    System.out.println("d) " + "agregar comentario");
+    System.out.println("f) " + "sair");
 
     opcion = entrada.nextLine();
     
@@ -47,7 +50,7 @@ public static void main(String[] args) {
         case "b":
 
             for (int i = 0; i < listaTareas.size(); i++) {
-               System.out.println(listaTareas.get(i).getId() + " " + listaTareas.get(i).getNome() + " " + listaTareas.get(i).getDescripcion());
+               System.out.println(listaTareas.get(i).getId() + " " + listaTareas.get(i).getNome() + " " + listaTareas.get(i).getDescripcion() + " " + listaTareas.get(i).getComentario());
             }
                 
             break;
@@ -66,7 +69,44 @@ public static void main(String[] args) {
 
                 }
             }
+
         case "d":
+
+            String opcion2 = "";
+            System.out.println("elige entre 1 - agregar comentario. 2 -modificalo ou 3 -borralo");
+
+                opcion2 = entrada.nextLine();
+
+            switch (opcion2){
+
+                case "1":
+                        
+                    Scanner ent = new Scanner(System.in);
+                    int eligeIndice = 0;
+                    System.out.println("elige en que tarea queres facer un comentario");
+                    eligeIndice = entrada.nextInt();
+                    System.out.println("inserta comentario");
+                    listaTareas.get(eligeIndice).setComentarios(ent.nextLine());
+                break;
+
+                case "2":
+                    Scanner ent1 = new Scanner(System.in);
+                    System.out.println("elige en que tarea queres modificar un comentario");
+                    eligeIndice = entrada.nextInt();
+                    System.out.println("modifica comentario");
+                    listaTareas.get(eligeIndice).setComentarios(ent1.nextLine());
+                  break;
+
+                case "3":
+                    
+                    System.out.println("elige en que tarea queres borrar o comentario");
+                    eligeIndice = entrada.nextInt();
+                    listaTareas.get(eligeIndice).setComentarios("");
+                    break;
+            }
+            break;
+
+        case "e":
 
             System.out.println("adios");
 
@@ -75,7 +115,7 @@ public static void main(String[] args) {
         }
 
 
-    }while(!opcion.equals("d")); 
+    }while(!opcion.equals("e")); 
 }
 }
 

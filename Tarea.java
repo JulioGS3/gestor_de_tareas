@@ -1,4 +1,4 @@
-package Tareas;
+package gestor_tareas;
 
 import java.util.ArrayList;
 
